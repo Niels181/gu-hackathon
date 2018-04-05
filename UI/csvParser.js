@@ -1,24 +1,3 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <title>jQuery Demo</title>
-</head>
-
-<body>
-
-        <h1>Text File Reader</h1>
-        <div>
-            Select a text file: 
-            <input type="file" id="fileInput">
-        </div>
-        <pre id="fileDisplayArea"><pre>
-
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-    <script src="../../jquery-csv/src/jquery.csv.js"></script>
-    
-    <script>
     var csvData;
     window.onload = function() {
         var fileInput = document.getElementById('fileInput');
@@ -32,7 +11,6 @@
 
             reader.onload = function(e) {
                 fileDisplayArea.innerText = reader.result;
-                //console.log(reader.result);
                 csvData = $.csv.toObjects(reader.result);
                 console.log(csvData);
             }
@@ -41,10 +19,3 @@
             reader.readAsText(file); 
         });
     }
-
-
-
-    </script>
-</body>
-
-</html>

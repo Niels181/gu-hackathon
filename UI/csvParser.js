@@ -11,7 +11,7 @@
 
             reader.onload = function(e) {
                 fileDisplayArea.innerText = reader.result;
-                csvData = $.csv.toObjects(reader.result);
+                csvData = $.csv.toArray(reader.result);
                 console.log(csvData);
             }
 

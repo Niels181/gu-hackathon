@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="Catalog.css" rel="stylesheet" />
+    <title>Catalog</title>
+</head>
+<body>
+        <h1>Consumer Energy Saving Reward Service</h1>
+   <!-- start form -->
+        <div id="main">
+            <div id="dienst">
+                <h3>Service</h3>
+                <p>Description: Energy Saving rewarding <br><br>
+                    <i>Goal of the service </i> <br>
+                    Based on the actual P1 data the energy saving is determined for the gas and electricity consumption. The actual P1 data is referenced to the historical consumption corrected with actual temperature and the appropriate usage category. Energy saving is rewarded with energy coins. P4 data provided by the network operator is used for validation of the P1 data for determining the final energy saving.  
+                    The selected service provider will read the data every 10 seconds. The user is in control to start and stop the subscription. 
+                    The provided P1 data is not used for other purposes.
+                    </p>
+            </div>
+            <div id="provider">
+                <h3>Data Service Provider</h3>
+                <ul id="list1">
+                    <li><input type="checkbox" name="option1" value="15">Company 1</li>
+                    <li><input type="checkbox" name="option2" value="1min">Compamy 2</li>
+                    <li><input type="checkbox" name="option3" value="1hour">Company 3</li>
+                </ul>
+            </div>
+            <div id="reward">
+                <h3>Reward</h3>
+                <ul id="list1">
+                    <li><input type="checkbox" name="option1" value="15">Free</li>
+                    <li><input type="checkbox" name="option2" value="1min">Receive coins</li>
+                    <li><input type="checkbox" name="option3" value="1hour">Pay coins</li>
+                </ul>
+            </div>
+            <div id="period">
+                <h3>Period of service</h3>
+                Start: <input type="date" name="start" />
+                End: <input type="date" name="end" />
+            </div>
+            <div id="interval">
+                <h3>Interval</h3>
+                <div id="list">
+                    <ul id="list1">
+                        <li><input type="checkbox" name="option1" value="15">10 Sec</li>
+                        <li><input type="checkbox" name="option2" value="1min">1 Minute</li>
+                        <li><input type="checkbox" name="option3" value="1hour">1 Hour </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="data">
+                <h3>Data to be provided</h3>
+                <ul>
+                    <li>Meter reading electricity deliverd</li>
+                    <li>Meter reading electricity received</li>
+                    <li>Meter reading gas deliverd</li>
+                    <li>Equipment identifier electricity</li>
+                    <li>Equipment identifier gas</li>
+                </ul>
+                <!-- Approve button -->
+            </div>
+            <button onclick="myfunction()" id="approve">Approve</button>
+        <script>
+            function myfunction() {
+                alert("Your data is succesfully sent! :)");
+            }
+        </script>
+        </div>
+</body>
+</html>

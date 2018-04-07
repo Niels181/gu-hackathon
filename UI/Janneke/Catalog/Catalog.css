@@ -1,0 +1,88 @@
+﻿html {
+    background-color: white;
+}
+body {
+    height: 100%;
+}
+h1 {
+    font-family: 'Nobile', sans-serif;
+    text-align: center;
+    background: #505E67;
+    width: 100%;
+    font-size: 175%;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 3% 0;
+    border-bottom: 1px #dedede solid;
+}
+
+#main {
+    font-family: 'Nobile', sans-serif;
+    border: 5px #505E67 solid;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -25%;
+    background-color: lightgray;
+}
+
+ul {
+    font-family: 'Nobile', sans-serif;
+    list-style-type: none;
+    line-height: 20px;
+}
+
+/*cutomer options*/
+#dienst {
+    border-bottom: 3px #505E67 solid;
+    margin: 4px;
+}
+
+#provider{
+    border-bottom: 3px #505E67 solid;
+    margin: 4px;
+}
+
+#reward {
+    border-bottom: 3px #505E67 solid;
+    margin: 4px;
+}
+#period {
+    border-bottom: 3px #505E67 solid;
+    margin: 4px;
+}
+#interval {
+    border-bottom: 3px #505E67 solid;
+    margin: 4px;
+}
+#data {
+    margin: 4px;
+}
+
+/*Approve button start*/
+button {
+    position:absolute;
+}
+#approve {
+    float: right;
+}
+button {
+    width: 220px;
+    height: 40px;
+    right: 0%;
+    margin: 20px 20px 0px 0px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2);
+    background-color: darkolivegreen;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: hand;
+    cursor: pointer;
+}
+/*Approve button end*/
+
+
+
+    

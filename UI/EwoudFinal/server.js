@@ -7,12 +7,12 @@ const seed = 'OS9IHQOOJDOQMCLSYXIMHEEMPTQRAAJQZUSFWCSPZFCJZ9ZMGN9DUMYUBSOARAQHYL
 let address = 'USRAEQUHLKULRLKQWXJVQMZNLJ9EIAUFSRSNYLND9WCXVQEBJKYDEDLXSVCYJQZQONNRQLROBGEOOHZTXQKJCIXSRX';
 
 p1_data = class {
-    constructor(id, timestamp, e_cons, e_prod, g) {
+    constructor(id, array) {
       this.id = id;
-      this.timestamp = new Date(timestamp);
-      this.electricityConsumption = e_cons;
-      this.electricityProduction = e_prod;
-      this.gas = g;
+      this.timestamp = new Date( array[0]);
+      this.electricityConsumption =  array[1];
+      this.electricityProduction =  array[2];
+      this.gas =  array[3];
     }
   }
 
@@ -42,7 +42,7 @@ function createP1Data() {
     ec += (Math.floor(Math.random() * (max - min) ) + min);
     ep += (Math.floor(Math.random() * (max - min) ) + min);
     g += (Math.floor(Math.random() * (max - min) ) + min);
-    return new p1_data(123498275987732, Date(), ec, ep, g);
+    return new p1_data(123498275987732, [Date(), ec, ep, g]);
 }
 
 let equipmentId = 123498275987732;
@@ -58,7 +58,7 @@ function sleep(milliseconds) {
     }
   }
  
-function sendIotaMessage(message, seed, address, encryptMessage){
+function sendIotaMessage(message, encryptMessage){
     // List of possible nodes
     let mainNodes = ['http://node02.iotatoken.nl:14265', 'http://node04.iotatoken.nl:14265', 'http://node06.iotatoken.nl:14265'];
     let testNodes = ['https://nodes.testnet.iota.org:443/'];
@@ -117,7 +117,7 @@ function generateP1Data(interval, numMessages)
         sleep(interval);
         let p1_data = createP1Data();
         let p1_message = p1ToString(p1_data);
-        sendIotaMessage(p1_message, seed, address, true);
+        sendIotaMessage(p1_message, true);
     }
 }
 

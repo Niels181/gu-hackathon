@@ -5,6 +5,7 @@ let CryptoJS = require('crypto-js');
 const seed = 'OS9IHQOOJDOQMCLSYXIMHEEMPTQRAAJQZUSFWCSPZFCJZ9ZMGN9DUMYUBSOARAQHYLALD9WKODIICXVEC'; // KEEP IT SECURE!!
 // The receiving address (Niels's wallet!)
 let address = 'USRAEQUHLKULRLKQWXJVQMZNLJ9EIAUFSRSNYLND9WCXVQEBJKYDEDLXSVCYJQZQONNRQLROBGEOOHZTXQKJCIXSRX';
+let secret = 'bz56mgprl5zpvst41xuaoptppzpaciay';
 
 p1_data = class {
     constructor(id, array) {
@@ -57,28 +58,46 @@ function sleep(milliseconds) {
       }
     }
   }
- 
-function sendIotaMessage(message, encryptMessage){
+
+  function selectIotaNode(netType) {
     // List of possible nodes
     let mainNodes = ['http://node02.iotatoken.nl:14265', 'http://node04.iotatoken.nl:14265', 'http://node06.iotatoken.nl:14265'];
     let testNodes = ['https://nodes.testnet.iota.org:443/'];
+    let node;
 
-    // Random index for node selection
-    var random = Math.floor(Math.random() * mainNodes.length);
+    if (netType == "main") {
+        var random = Math.floor(Math.random() * mainNodes.length);
+        node = mainNodes[random];
+    } else if (netType == "test") {
+        node = testNodes[0];
+    }
+    return node;
+  }
+ 
+ function createTransfer(transferDataArray) {
+    let address = transferDataArray[0];
+    let value = transferDataArray[1];
+    let msgTag = transferDataArray[2];
+    let msgTrytes = transferDataArray[3];
+    let transfer = [{
+        'address': address,
+        'value': 0,
+        'tag': msgTag,
+        'message': msgTrytes,
+    }]; 
+    return transfer;
+ } 
+  
 
-    // Create IOTA instance directly with Node (provider)
-    // This is node is your entry point to the Tangle
+function sendIotaMessage(message, encryptMessage){
+   
     var iota = new IOTA({
-        'provider': mainNodes[random]
+        'provider': selectIotaNode("main")
     });
 
-    // A seed is used as your 'private key' so never share it!
-    
     // Create a message to attach to your transaction
     // and convert it to Trytes (data format used by IOTA)
     let msgTag = 'TAG';
-    let secret = 'bz56mgprl5zpvst41xuaoptppzpaciay';
-    console.log("Message: " + message);
 
     // Encrypt baseb64
     if (encryptMessage) {
@@ -91,19 +110,11 @@ function sendIotaMessage(message, encryptMessage){
 
     // Construct the transfer bundle with address, 
     // value (amount of IOTA), a tag and a message
-    var transfer = [{
-        'address': address,
-        'value': 0,
-        'tag': msgTag,
-        'message': msgTrytes,
-    }];
-
-    let depth = 9;
-    let minWeigthMagnitude = 14; // 9 for testnet, 14 for mainnet
+    var transfer = createTransfer([address, 0, msgTag, msgTrytes]);
 
     // Send transfer to the Tangle. Depending on the Node config of the connected Node
     // you also do the PoW at this point. The magic numbers can stay there for the Mainnet
-    iota.api.sendTransfer(seed, depth, minWeigthMagnitude, transfer, function(e, bundle) {
+    iota.api.sendTransfer(seed, 9, 14, transfer, function(e, bundle) {
         if (e) throw e;
         console.log("Successfully sent your transfer: ", bundle);
     });
@@ -111,7 +122,6 @@ function sendIotaMessage(message, encryptMessage){
 
 function generateP1Data(interval, numMessages)
 {
- 
     for (i=0; i<numMessages; i++)
     {
         sleep(interval);

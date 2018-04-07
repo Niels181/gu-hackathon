@@ -35,13 +35,6 @@ function createGraph(data) {
     let t1_data = calculateFlow(p1_meterreading_t1);
     let t2_data = calculateFlow(p1_meterreading_t2);
 
-    
-    //p1_meterreading_t1.forEach(function (item, index, arr) {
-    //    arr[index] = item - p1_meterreading_t2[index];
-    //})
-	
-	//element id 2 = silvermintes 
-
 	console.log(time);
     console.log(t1_data);
     console.log(t2_data);
